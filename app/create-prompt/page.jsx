@@ -35,6 +35,8 @@ const CreatePromptPage = () => {
     }
   }
 
+  if(!session?.user?.id) return router.push('/');
+
   return (
     <>
       <Form

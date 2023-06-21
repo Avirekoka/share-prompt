@@ -1,9 +1,16 @@
 'use client';
 import React from 'react';
 import PromptCard from './PromptCard';
-import Link from 'next/link'
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const MyProfile = ({ name, desc, prompts, handleEdit, handleDelete }) => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+
+  if (!session?.user?.id) return router.push("/");
   return (
     <section className='w-full'>
       <h1 className='head_text text_left'><span className='blue_gradient'>{name} profile</span></h1>
